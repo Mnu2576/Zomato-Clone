@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import NavBar from '../components/NavBar'
-// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,17 +13,23 @@ const Login = () => {
     
     const handleChange = (e) =>{
         e.preventDefault();
-        setData(prev =>({...prev, [e.target.name] : e.target.value}));
+        const {name , value} = e.target;
+        setData(prev =>({...prev, [name] : value}));
         console.log(data);
     }
     const handleSubmit = async(e) =>{
         e.preventDefault();
-        try{
-            // const res =await axios.post('http://localhost:3000/user/login', data);
-            navigate('/');
-        }catch(err){
-            console.log(err);
-        }
+        fetch('http://localhost:4000/user/login',{
+            method:'POST',
+            headers:{
+                "Content-Type":"application/json"},
+            body:JSON.stringify(data)
+        }).then((res)=>{
+            res.json("Valid Credential")
+            navigate('/')
+        }).catch((err)=>{
+            console.log('err', err)
+        })
     }
     return (
         <>
@@ -35,8 +40,9 @@ const Login = () => {
                 </h1>
                 <Form className='m-auto' style={{justifyContent:'center'}}>
                     <Form.Group className='col-3 m-auto '>
-                        <Form.Control onChange={handleChange} className='m-3' name='email' type='email' placeholder='username'></Form.Control>
-                        <Form.Control onChange={handleChange} className='m-3' name='password' type='password' placeholder='password'></Form.Control>
+                    <Form.Control onChange={handleChange} value={data.username} className='m-3' name='username' type='text' placeholder='username'></Form.Control>
+                        <Form.Control onChange={handleChange} value={data.email} className='m-3' name='email' type='email' placeholder='email'></Form.Control>
+                        <Form.Control onChange={handleChange} value={data.password} className='m-3' name='password' type='password' placeholder='password'></Form.Control>
                     </Form.Group>
                     <Form.Group className='col-4 m-auto'>
                         <Button className='col-4 m-3' onClick={handleSubmit} >Login</Button>

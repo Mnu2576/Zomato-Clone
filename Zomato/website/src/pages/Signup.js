@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import { Button, Container, Form } from 'react-bootstrap'
-// import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -14,20 +13,25 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const handleChange = (e)=>{
-        // console.log(e);
-        setData(prev=>({...prev, [e.target.name]: [e.target.value]}))
-        console.log(data)
+        const {name , value } = e.target;
+        setData(prev=>({...prev, [name]:value}))
+        console.log(data , "heheh")
         
     }
     const handleSubmit = async (e)=>{
-        e.preventDefault();
-        try{
-
-            navigate('/')
-
-        }catch(err){
-            console.log(err)
-        }
+        fetch("http://localhost:4000/register/signup", {
+            method:"POST",
+            headers:{
+                'Content-type':'application/json'
+            },body:JSON.stringify(data)
+        }).then(()=>{
+            console.log('Registered')
+            navigate('/login')
+            
+          }).catch((err)=>{
+            console.log(err,"err")
+      
+          })
     }
 
   return (
@@ -44,7 +48,7 @@ const Signup = () => {
                     <Form.Control className='m-3' onChange={handleChange} value={data.password} name='password' type='password' placeholder='password'></Form.Control>
                 </Form.Group>
                     <Form.Group className='col-4 m-auto'>
-                        <Button className='col-4 m-3' href='#' onClick={handleSubmit}  >Sign up</Button>
+                        <Button className='col-4 m-3' onClick={handleSubmit} >Sign up</Button>
                     </Form.Group>
             </Form>
         </Container>

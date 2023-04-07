@@ -5,6 +5,8 @@ const registered = require("./routes/auth")
 const database = require("mongoose")
 const dotenv = require("dotenv")
 const { json } = require("express")
+const cors=require('cors')
+app.use(cors())
 
 dotenv.config();
 
