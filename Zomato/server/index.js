@@ -26,8 +26,8 @@ app.use("/register", register)
 //login
 app.use("/user", registered )
 
-app.listen(4000,(req,res)=>{
-    console.log("server is running on 4000 port")
+app.listen(4500,(req,res)=>{
+    console.log("server is running on 4500 port")
 })
 
 

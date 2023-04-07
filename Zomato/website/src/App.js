@@ -15,7 +15,6 @@ const App = () => {
       <Route path='/add-restaurant' element={<Addresturant/>} ></Route>
     </Routes>
     </BrowserRouter>
-
   )
 }
 

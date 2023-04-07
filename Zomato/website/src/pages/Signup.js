@@ -19,7 +19,7 @@ const Signup = () => {
         
     }
     const handleSubmit = async (e)=>{
-        fetch("http://localhost:4000/register/signup", {
+        fetch("http://localhost:4500/register/signup", {
             method:"POST",
             headers:{
                 'Content-type':'application/json'
