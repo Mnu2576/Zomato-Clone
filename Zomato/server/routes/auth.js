@@ -25,7 +25,7 @@ router.post("/login", async (req, res) => {
         const user = await User.findOne({ username: req.body.username })
         const email = await User.findOne({ email: req.body.email })
         if (!user || !email) {
-            console.log("Please enter correct email or paword ")
+            console.log("Please enter correct email or password ")
         } else {
             const hashedpassword = Crypto.AES.decrypt(user.password, process.env.PASS)
             const origionalpassword = hashedpassword.toString(Crypto.enc.Utf8)
