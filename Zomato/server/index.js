@@ -1,12 +1,12 @@
 const express = require("express")
 const app = express();
-const register = require("./routes/auth")
-const registered = require("./routes/auth")
 const database = require("mongoose")
 const dotenv = require("dotenv")
 const { json } = require("express")
 const cors=require('cors')
 app.use(cors())
+
+
 
 dotenv.config();
 
@@ -21,10 +21,16 @@ database.connect(process.env.DATABASE)
 app.use(express.json())
 
 //register
+const register = require("./routes/auth")
 app.use("/register", register)
 
 //login
+const registered = require("./routes/auth")
 app.use("/user", registered )
+
+//add-restaurant
+const addRestaurant = require("./Schema/addResturant")
+app.use("/add" , addRestaurant)
 
 app.listen(4500,()=>{
     console.log("server is running on 4500 port")

@@ -1,22 +1,22 @@
 const router = require('express').Router()
 const Restaurant = require('../Schema/addRestaurant')
 
-router.post('/add-resturant', async (req, res) => {
+router.post('/restaurant', async (req, res) => {
 
     const NewRestaurants = new Restaurant({
-        restrauntName: req.body.restrauntName,
-        restrauntAddress: req.body.restrauntAddress,
-        restrauntPhoneNumber: req.body.restrauntOwnerPhone,
-        restrauntOwnerName: req.body.restrauntOwnerName,
-        restrauntOwnerPhone: req.body.restrauntOwnerPhone,
-        restrauntOwnerEmail: req.body.restrauntOwnerEmail
+        restauntName: req.body.restauntName,
+        restauntAddress: req.body.restauntAddress,
+        restauntPhoneNumber: req.body.restauntOwnerPhone,
+        restauntOwnerName: req.body.restauntOwnerName,
+        restauntOwnerPhone: req.body.restauntOwnerPhone,
+        restauntOwnerEmail: req.body.restauntOwnerEmail
     })
-    if (!restrauntName || !restrauntAddress || !restrauntPhoneNumber || !restrauntOwnerName || !restrauntOwnerPhone || !restrauntOwnerEmail) {
+    if (!restauntName || !restauntAddress || !restauntPhoneNumber || !restauntOwnerName || !restauntOwnerPhone || !restauntOwnerEmail) {
         console.log("Complete the detail");
         return res.status(400).json("Complete the detail");
         
     }else{
-        Restaurant.findOne({restrauntName:req.body.restrauntName}).then(()=>{
+        Restaurant.findOne({restauntName:req.body.restauntName}).then(()=>{
             console.log('Restaurant already exits')
             return res.status(409).json('user already exists')
         }).catch((err)=>{

@@ -4,6 +4,7 @@ import Home from '../src/pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import ViewRestaurant from './pages/ViewRestaurant'
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       <Route path='/' element={<Home/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
-      <Route path='/add-restaurant' element={<Addresturant/>} ></Route>
+      <Route path='/add-restaurant' element={<Addresturant/>}></Route>
+      <Route path='/view-restaurant' element={<ViewRestaurant/>}></Route>
     </Routes>
     </BrowserRouter>
   )
