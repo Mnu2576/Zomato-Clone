@@ -4,26 +4,32 @@ const Restaurant = require('../Schema/addRestaurant')
 router.post('/restaurant', async (req, res) => {
 
     const NewRestaurants = new Restaurant({
-        restauntName: req.body.restauntName,
-        restauntAddress: req.body.restauntAddress,
-        restauntPhoneNumber: req.body.restauntOwnerPhone,
-        restauntOwnerName: req.body.restauntOwnerName,
-        restauntOwnerPhone: req.body.restauntOwnerPhone,
-        restauntOwnerEmail: req.body.restauntOwnerEmail
+        restaurantName: req.body.restaurantName,
+        restaurantAddress: req.body.restaurantAddress,
+        restaurantPhoneNumber: req.body.restaurantPhoneNumber,
+        restaurantOwnerName: req.body.restaurantOwnerName,
+        restaurantOwnerAddress: req.body.restaurantOwnerAddress,
+        restaurantOwnerEmail: req.body.restaurantOwnerEmail,
     })
-    if (!restauntName || !restauntAddress || !restauntPhoneNumber || !restauntOwnerName || !restauntOwnerPhone || !restauntOwnerEmail) {
+    if (!req.body.restaurantName || !req.body.restaurantAddress || !req.body.restaurantPhoneNumber || !req.body.restaurantOwnerName || !req.body.restaurantOwnerAddress || !req.body.restaurantOwnerEmail) {
         console.log("Complete the detail");
         return res.status(400).json("Complete the detail");
-        
-    }else{
-        Restaurant.findOne({restauntName:req.body.restauntName}).then(()=>{
-            console.log('Restaurant already exits')
-            return res.status(409).json('user already exists')
-        }).catch((err)=>{
-            console.log(err);
-            res.status(400).json(err);
-        })
-        const saveRestaurants = await NewRestaurants.save()
-        res.status(200).json(saveRestaurants)
     }
+
+    Restaurant.findOne({ restaurantName: req.body.restaurantName }).then((exists) => {
+        if (exists) {
+            console.log("Restaurant Already Exists")
+            res.status(400).json("Already Exists")
+        }else{
+            NewRestaurants.save().then(() => {
+                console.log("Added to the databse");
+                res.status(200).json( "Submitted Sucessuflly");
+            }).catch((err) => {
+                console.log("Error");
+            })
+        }
+
+    })
 })
+
+module.exports = router

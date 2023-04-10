@@ -29,7 +29,7 @@ const registered = require("./routes/auth")
 app.use("/user", registered )
 
 //add-restaurant
-const addRestaurant = require("./Schema/addResturant")
+const addRestaurant = require("./routes/AddRestaurant")
 app.use("/add" , addRestaurant)
 
 app.listen(4500,()=>{
