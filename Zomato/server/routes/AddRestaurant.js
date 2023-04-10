@@ -2,7 +2,6 @@ const router = require('express').Router()
 const Restaurant = require('../Schema/addRestaurant')
 
 router.post('/restaurant', async (req, res) => {
-
     const NewRestaurants = new Restaurant({
         restaurantName: req.body.restaurantName,
         restaurantAddress: req.body.restaurantAddress,
