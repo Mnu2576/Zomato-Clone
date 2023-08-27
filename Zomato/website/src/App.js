@@ -1,11 +1,12 @@
 import React from 'react'
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Addresturant from './pages/Addresturant'
 import Home from '../src/pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ViewRestaurant from './pages/ViewRestaurant'
-
 const App = () => {
   return (
     <BrowserRouter>

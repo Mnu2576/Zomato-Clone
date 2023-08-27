@@ -5,6 +5,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import './home.css'
 import Getapp from '../components/Getapp';
+import Footer from '../components/Footer';
 const Home = () => {
   return (
     <>
@@ -38,6 +39,7 @@ const Home = () => {
       </div>
       <div>
       <Getapp/>
+      <Footer/>
       </div>
     </>
   )
